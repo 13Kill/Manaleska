@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CardEngine.Interfaces;
 
-namespace CardEngine.Logic
+namespace CardEngine.Model
 {
-    public class Card : ICard
+    public class PlayerCreationParameters
     {
         public string Name
         {

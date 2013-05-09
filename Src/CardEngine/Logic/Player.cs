@@ -7,12 +7,7 @@ using CardEngine.Interfaces;
 
 namespace CardEngine.Logic
 {
-    public class Card : ICard
+    public class Player : IPlayer
     {
-        public string Name
-        {
-            get;
-            set;
-        }
     }
 }

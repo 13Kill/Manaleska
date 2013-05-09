@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CardEngine.Interfaces;
 
 namespace CardEngine.Logic
 {
-    public class Card : ICard
+    public class SimulationReactor
     {
-        public string Name
+        public SimulationReactor()
         {
-            get;
-            set;
+
         }
     }
 }

@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CardEngine.Interfaces;
 
-namespace CardEngine.Logic
+namespace CardEngine.Interfaces
 {
-    public class Card : ICard
+    public interface IDeck
     {
-        public string Name
+        ICard this[int index]
         {
             get;
-            set;
         }
     }
 }

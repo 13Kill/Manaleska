@@ -40,8 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardEngineMeta.cs" />
+    <Compile Include="Interfaces\ICard.cs" />
+    <Compile Include="Interfaces\IDeck.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Logic\Card.cs" />
     <Compile Include="Logic\Deck.cs" />
+    <Compile Include="Logic\Engine.cs" />
+    <Compile Include="Logic\Player.cs" />
+    <Compile Include="Logic\SimulationReactor.cs" />
+    <Compile Include="Model\PlayerCreationParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

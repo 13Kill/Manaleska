@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CardEngine.Interfaces;
 
 namespace CardEngine.Logic
 {
-    class Deck
+    public class Deck : IDeck
     {
         private List<Card> mCards = new List<Card>();
 
-        public Card this[int index]
+        public ICard this[int index]
         {
             get
             {

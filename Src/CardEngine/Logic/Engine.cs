@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CardEngine.Interfaces;
+using CardEngine.Model;
 
 namespace CardEngine.Logic
 {
-    public class Card : ICard
+    public class Engine : IEngine
     {
-        public string Name
+        public IPlayer CreatePlayer(PlayerCreationParameters creationParameters)
         {
-            get;
-            set;
+            return new Player();
         }
     }
 }
