@@ -95,9 +95,13 @@ namespace Manaleska
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);        
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin();
 
             animatedSprite.Draw(_spriteBatch, new Vector2(400, 200));
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
