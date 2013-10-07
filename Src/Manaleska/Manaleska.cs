@@ -62,7 +62,7 @@ namespace Manaleska
             _lolifront = Content.Load<Texture2D>("large");
             _background = Content.Load<Texture2D>("background");
             _shuttle = Content.Load<Texture2D>("shuttle");
-            _earth = Content.Load<Texture2D>("earth");
+            _earth = Content.Load<Texture2D>("earth1");
             // TODO: use this.Content to load your game content here
         }
 
