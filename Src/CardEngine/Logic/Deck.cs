@@ -1,9 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CardEngine.Interfaces;
+
+#endregion
 
 namespace CardEngine.Logic
 {
@@ -19,9 +20,8 @@ namespace CardEngine.Logic
                 {
                     return _cards[index];
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                	
                 }
                 return null;
             }
