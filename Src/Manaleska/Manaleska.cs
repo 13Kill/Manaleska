@@ -18,11 +18,8 @@ namespace Manaleska
     public class Manaleska : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch _spriteBatch;
-        private Texture2D _lolifront;
-        private Texture2D _background;
-        private Texture2D _shuttle;
-        private Texture2D _earth;
+        SpriteBatch _spriteBatch;       
+        private AnimatedSprite animatedSprite;
 
         public Manaleska()
             : base()
@@ -50,6 +47,7 @@ namespace Manaleska
             base.Initialize();
         }
 
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -58,12 +56,11 @@ namespace Manaleska
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            _lolifront = Content.Load<Texture2D>("large");
-            _background = Content.Load<Texture2D>("background");
-            _shuttle = Content.Load<Texture2D>("shuttle");
-            _earth = Content.Load<Texture2D>("earth1");
             // TODO: use this.Content to load your game content here
+
+            Texture2D texture = Content.Load<Texture2D>("SmileyWalk");
+            animatedSprite = new AnimatedSprite(texture, 4, 4);
+
         }
 
         /// <summary>
@@ -85,6 +82,8 @@ namespace Manaleska
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            animatedSprite.Update();
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -96,15 +95,9 @@ namespace Manaleska
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);        
 
-            _spriteBatch.Begin();
-
-            _spriteBatch.Draw(_background, new Rectangle(0,0,800,480), Color.White);
-            _spriteBatch.Draw(_earth, new Vector2(400, 240), Color.White);
-            _spriteBatch.Draw(_shuttle, new Vector2(450, 240), Color.White);
-
-            _spriteBatch.End();
+            animatedSprite.Draw(_spriteBatch, new Vector2(400, 200));
 
             base.Draw(gameTime);
         }
