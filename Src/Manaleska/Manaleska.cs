@@ -20,6 +20,9 @@ namespace Manaleska
         GraphicsDeviceManager graphics;
         SpriteBatch _spriteBatch;
         private Texture2D _lolifront;
+        private Texture2D _background;
+        private Texture2D _shuttle;
+        private Texture2D _earth;
 
         public Manaleska()
             : base()
@@ -57,6 +60,9 @@ namespace Manaleska
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _lolifront = Content.Load<Texture2D>("large");
+            _background = Content.Load<Texture2D>("background");
+            _shuttle = Content.Load<Texture2D>("shuttle");
+            _earth = Content.Load<Texture2D>("earth");
             // TODO: use this.Content to load your game content here
         }
 
@@ -94,7 +100,9 @@ namespace Manaleska
 
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(_lolifront, new Rectangle(0,0,512,640), Color.White);
+            _spriteBatch.Draw(_background, new Rectangle(0,0,800,480), Color.White);
+            _spriteBatch.Draw(_earth, new Vector2(400, 240), Color.White);
+            _spriteBatch.Draw(_shuttle, new Vector2(450, 240), Color.White);
 
             _spriteBatch.End();
 
