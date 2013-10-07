@@ -1,6 +1,7 @@
 ﻿#region Using Statements
 using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,12 +18,17 @@ namespace Manaleska
     public class Manaleska : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        SpriteBatch _spriteBatch;
+        private Texture2D _lolifront;
 
         public Manaleska()
             : base()
         {
-            graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this)
+            {
+                IsFullScreen = false
+            };
+
             Content.RootDirectory = "Content";
         }
 
@@ -36,6 +42,8 @@ namespace Manaleska
         {
             // TODO: Add your initialization logic here
 
+            Window.Title = "Manaleska Doriru Impacto Kawaii";
+
             base.Initialize();
         }
 
@@ -46,8 +54,9 @@ namespace Manaleska
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _lolifront = Content.Load<Texture2D>("large");
             // TODO: use this.Content to load your game content here
         }
 
@@ -83,7 +92,11 @@ namespace Manaleska
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(_lolifront, new Rectangle(0,0,512,640), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
