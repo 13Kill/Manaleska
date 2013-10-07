@@ -12,8 +12,10 @@ namespace Framework.Network
     public class Client
     {
         public delegate void DataReceivedDelegate(byte[] data);
-
         public event DataReceivedDelegate DataReceived;
+
+        public delegate void ConnectedDelegate();
+        public event ConnectedDelegate Connected;
 
         private readonly byte[] _buffer = new byte[4096];
         private readonly Socket _client;
@@ -21,7 +23,7 @@ namespace Framework.Network
         public Client(IPAddress ip, int port)
         {
             _client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-           // _client.BeginConnect(ip, port, OnConnect, this);
+            _client.BeginConnect(ip, port, OnConnect, this);
         }
 
         public Client(Socket client)
@@ -31,13 +33,31 @@ namespace Framework.Network
 
         protected virtual void OnDataReceived(byte[] data)
         {
-            if (DataReceived != null) 
+            if (DataReceived != null)
                 DataReceived(data);
+        }
+
+        protected virtual void OnConnected()
+        {
+            if (Connected != null)
+                Connected();
         }
 
         public void Start()
         {
             Read();
+        }
+
+        public void Close()
+        {
+            try
+            {
+                if (_client.Connected)
+                    _client.BeginDisconnect(true, OnDisconnect, this);
+            }
+            catch
+            {
+            }
         }
 
         public void Send(byte[] data)
@@ -52,6 +72,25 @@ namespace Framework.Network
             }
         }
 
+        private void Read()
+        {
+            if (_client.Connected)
+                _client.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, OnReceive, this);
+        }
+
+        private void OnConnect(IAsyncResult ar)
+        {
+            try
+            {
+                _client.EndConnect(ar);
+                OnConnected();
+            }
+            catch
+            {
+
+            }
+        }
+
         private void OnSend(IAsyncResult ar)
         {
             try
@@ -62,12 +101,6 @@ namespace Framework.Network
             {
                 Close();
             }
-        }
-
-        private void Read()
-        {
-            if (_client.Connected)
-                _client.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, OnReceive, this);
         }
 
         private void OnReceive(IAsyncResult ar)
@@ -89,18 +122,6 @@ namespace Framework.Network
             catch
             {
                 Close();
-            }
-        }
-
-        public void Close()
-        {
-            try
-            {
-                if (_client.Connected)
-                    _client.BeginDisconnect(true, OnDisconnect, this);
-            }
-            catch
-            {
             }
         }
 
