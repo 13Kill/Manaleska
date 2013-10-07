@@ -9,7 +9,7 @@ namespace CardEngine.Logic
 {
     public class Deck : IDeck
     {
-        private List<Card> mCards = new List<Card>();
+        private readonly List<Card> _cards = new List<Card>();
 
         public ICard this[int index]
         {
@@ -17,7 +17,7 @@ namespace CardEngine.Logic
             {
                 try
                 {
-                    return mCards.ElementAt(index);
+                    return _cards[index];
                 }
                 catch (System.Exception ex)
                 {
