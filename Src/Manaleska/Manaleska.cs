@@ -18,23 +18,10 @@ namespace Manaleska
     public class Manaleska : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch _spriteBatch;       
-        private AnimatedSprite animatedSprite;
-        
-        //Menu
-        enum GameState
-        {
-            MainMenu,
-            Options,
-            Playing,
-        }
-        GameState CurrentGameState = GameState.MainMenu;
+        SpriteBatch _spriteBatch;
+        Texture2D button;
+        Vector2 buttonPosition = new Vector2 (20, 40);
 
-        // Screen Adjusments
-        int screenWidth = 800, screenHeight = 600;
-
-        Button btnPlay;
-        //FIN Menu
 
         public Manaleska()
             : base()
@@ -71,21 +58,8 @@ namespace Manaleska
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.button = Content.Load<Texture2D>("button");
             // TODO: use this.Content to load your game content here
-
-            //Menu
-            graphics.PreferredBackBufferWidth = screenWidth;
-            graphics.PreferredBackBufferHeight = screenHeight;
-            //graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
-            IsMouseVisible = true;
-
-            btnPlay = new Button(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
-            btnPlay.setPosition(new Vector2(350, 300));
-
-            //Smiley qui danse
-            //Texture2D texture = Content.Load<Texture2D>("SmileyWalk");
-            //animatedSprite = new AnimatedSprite(texture, 4, 4);
         }
 
         /// <summary>
@@ -105,28 +79,13 @@ namespace Manaleska
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
-
+   
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            switch (CurrentGameState)
-            {
-                case GameState.MainMenu:
-                    if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
-                    btnPlay.Update(mouse);
-                    break;
-
-                case GameState.Options:
-                    break;
-
-                case GameState.Playing:
-                    break;
-            }
-
             //animatedSprite.Update();
 
             // TODO: Add your update logic here
-
+            
             base.Update(gameTime);
         }
 
@@ -139,23 +98,7 @@ namespace Manaleska
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-
-            switch (CurrentGameState)
-            {
-                case GameState.MainMenu:
-                    _spriteBatch.Draw(Content.Load<Texture2D>("MainMenu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-                    btnPlay.Draw(_spriteBatch);
-                    break;
-
-                case GameState.Options:
-                    break;
-
-                case GameState.Playing:
-                    break;
-            }
-            
-
-            //animatedSprite.Draw(_spriteBatch, new Vector2(400, 200));
+            _spriteBatch.Draw(this.button, this.buttonPosition, Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);
