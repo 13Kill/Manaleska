@@ -1,22 +1,22 @@
-﻿#region
-
+﻿#region Using Statements
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 #endregion
 
 namespace Manaleska
 {
 #if WINDOWS || LINUX
     /// <summary>
-    ///     The main class.
+    /// The main class.
     /// </summary>
     public static class Program
     {
         /// <summary>
-        ///     The main entry point for the application.
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main()
+        static void Main()
         {
             using (var game = new Manaleska())
                 game.Run();

@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
+    <Compile Include="Button.cs" />
     <Compile Include="Manaleska.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\button.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MainMenu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SmileyWalk.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
